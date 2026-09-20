@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2026 at 04:28 PM
+-- Generation Time: Sep 20, 2026 at 08:29 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,8 +48,8 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id_barang`, `barcode`, `nama_barang`, `id_kategori`, `id_satuan`, `harga_beli_terakhir`, `harga_jual`, `stok`, `stok_minimum`, `aktif`, `created_by`, `created_at`, `updated_at`) VALUES
-('B0001', '8991234567890', 'Buku Tulis Sinar Dunia 38 Lbr', 'K0001', 'ST001', 0.00, 5000.00, 0, 10, 1, 'inv_indomarco', '2026-09-17 05:24:26', '2026-09-17 05:24:26'),
-('B0002', '8991234567891', 'Air Mineral 600ml', 'K0002', 'ST005', 0.00, 3500.00, 0, 24, 1, 'inv_alfaria', '2026-09-17 05:24:26', '2026-09-17 05:24:26');
+('B0001', '8991234567890', 'Buku Tulis Sinar Dunia 38 Lbr', 'K0001', 'ST001', 1500.00, 5000.00, 96, 10, 1, 'inv_indomarco', '2026-09-17 05:24:26', '2026-09-20 05:22:55'),
+('B0002', '8991234567891', 'Air Mineral 600ml', 'K0002', 'ST005', 2000.00, 3500.00, 91, 24, 1, 'inv_alfaria', '2026-09-17 05:24:26', '2026-09-20 05:22:55');
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,7 @@ CREATE TABLE `customer` (
   `kode_member` varchar(20) DEFAULT NULL,
   `nama_customer` varchar(50) NOT NULL,
   `no_telepon` varchar(20) DEFAULT NULL,
-  `tgl_daftar` date NOT NULL,
+  `tgl_daftar` date NOT NULL DEFAULT current_timestamp(),
   `aktif` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -88,7 +88,9 @@ CREATE TABLE `detail_pembelian` (
 
 INSERT INTO `detail_pembelian` (`id_detail_beli`, `id_pembelian`, `id_barang`, `harga_beli`, `jumlah`, `tgl_kadaluarsa`) VALUES
 (1, 'PB202609170001', 'B0001', 3500.00, 50, NULL),
-(2, 'PB202609170002', 'B0002', 2200.00, 120, NULL);
+(2, 'PB202609170002', 'B0002', 2200.00, 120, NULL),
+(3, 'PB202609200001', 'B0002', 2000.00, 100, NULL),
+(4, 'PB202609200002', 'B0001', 1500.00, 100, NULL);
 
 --
 -- Triggers `detail_pembelian`
@@ -115,6 +117,22 @@ CREATE TABLE `detail_penjualan` (
 ) ;
 
 --
+-- Dumping data for table `detail_penjualan`
+--
+
+INSERT INTO `detail_penjualan` (`id_detail`, `id_penjualan`, `id_barang`, `harga_satuan`, `jumlah`, `diskon_item`) VALUES
+(1, 'PJ202609200001', 'B0002', 3500.00, 3, 0.00),
+(2, 'PJ202609200002', 'B0001', 5000.00, 3, 0.00),
+(3, 'PJ202609200003', 'B0001', 5000.00, 1, 0.00),
+(4, 'PJ202609200003', 'B0002', 3500.00, 1, 0.00),
+(5, 'PJ202609200004', 'B0002', 3500.00, 1, 0.00),
+(6, 'PJ202609200005', 'B0001', 5000.00, 1, 0.00),
+(7, 'PJ202609200006', 'B0001', 5000.00, 1, 0.00),
+(8, 'PJ202609200007', 'B0001', 5000.00, 1, 0.00),
+(9, 'PJ202609200008', 'B0001', 5000.00, 4, 0.00),
+(10, 'PJ202609200008', 'B0002', 3500.00, 4, 0.00);
+
+--
 -- Triggers `detail_penjualan`
 --
 DELIMITER $$
@@ -138,7 +156,14 @@ CREATE TABLE `detail_retur` (
   `kondisi_barang` enum('reject_rusak','kembali_stok') NOT NULL DEFAULT 'reject_rusak'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- (Trigger trg_retur_masuk removed to avoid double stock increment during Supervisor Approval workflow)
+--
+-- Dumping data for table `detail_retur`
+--
+
+INSERT INTO `detail_retur` (`id_detail_retur`, `id_retur`, `id_barang`, `harga_satuan`, `jumlah_retur`, `kondisi_barang`) VALUES
+(1, 'RT202609200001', 'B0002', 3500.00, 2, 'reject_rusak'),
+(2, 'RT202609200002', 'B0001', 5000.00, 3, 'kembali_stok'),
+(3, 'RT202609200003', 'B0001', 5000.00, 1, 'kembali_stok');
 
 -- --------------------------------------------------------
 
@@ -186,6 +211,31 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `version` varchar(255) NOT NULL,
+  `class` varchar(255) NOT NULL,
+  `group` varchar(255) NOT NULL,
+  `namespace` varchar(255) NOT NULL,
+  `time` int(11) NOT NULL,
+  `batch` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
+(1, '2026-09-20-034913', 'App\\Database\\Migrations\\AddStatusAndKasirToReturTable', 'default', 'App', 1789876175, 1),
+(2, '2026-09-20-041059', 'App\\Database\\Migrations\\DropTrgReturMasukTrigger', 'default', 'App', 1789877474, 2),
+(3, '2026-09-20-044414', 'App\\Database\\Migrations\\AddKepuasanToPenjualanTable', 'default', 'App', 1789879476, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pembelian`
 --
 
@@ -207,7 +257,9 @@ CREATE TABLE `pembelian` (
 
 INSERT INTO `pembelian` (`id_pembelian`, `id_supplier`, `user_id`, `no_faktur`, `tanggal_beli`, `total_beli`, `status`, `keterangan`, `created_at`) VALUES
 ('PB202609170001', 'S0001', 'inv_indomarco', 'FKT-001', '2026-09-17 08:00:00', 175000.00, 'diterima', NULL, '2026-09-17 05:24:26'),
-('PB202609170002', 'S0002', 'inv_alfaria', 'FKT-002', '2026-09-17 08:30:00', 264000.00, 'diterima', NULL, '2026-09-17 05:24:26');
+('PB202609170002', 'S0002', 'inv_alfaria', 'FKT-002', '2026-09-17 08:30:00', 264000.00, 'diterima', NULL, '2026-09-17 05:24:26'),
+('PB202609200001', 'S0001', 'admin01', 'FKT-112177721', '2026-09-20 03:28:00', 200000.00, 'diterima', NULL, '2026-09-20 03:30:11'),
+('PB202609200002', 'S0002', 'inv_alfaria', 'FKT-366372832', '2026-09-20 04:03:00', 150000.00, 'diterima', NULL, '2026-09-20 04:04:19');
 
 -- --------------------------------------------------------
 
@@ -230,6 +282,20 @@ CREATE TABLE `penjualan` (
   `kepuasan` enum('puas','tidak_puas') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `penjualan`
+--
+
+INSERT INTO `penjualan` (`id_penjualan`, `user_id`, `id_customer`, `tanggal_jual`, `subtotal`, `diskon`, `total_belanja`, `metode_bayar`, `bayar`, `kembali`, `status`, `kepuasan`) VALUES
+('PJ202609200001', 'admin01', NULL, '2026-09-20 03:32:13', 10500.00, 0.00, 10500.00, 'tunai', 20000.00, 9500.00, 'selesai', NULL),
+('PJ202609200002', 'kasir01', NULL, '2026-09-20 04:06:00', 15000.00, 0.00, 15000.00, 'tunai', 20000.00, 5000.00, 'selesai', NULL),
+('PJ202609200003', 'kasir01', NULL, '2026-09-20 04:17:11', 8500.00, 0.00, 8500.00, 'tunai', 10000.00, 1500.00, 'selesai', NULL),
+('PJ202609200004', 'kasir01', NULL, '2026-09-20 04:48:45', 3500.00, 0.00, 3500.00, 'tunai', 5000.00, 1500.00, 'selesai', NULL),
+('PJ202609200005', 'kasir01', NULL, '2026-09-20 04:53:26', 5000.00, 0.00, 5000.00, 'tunai', 50000.00, 45000.00, 'selesai', NULL),
+('PJ202609200006', 'kasir01', NULL, '2026-09-20 05:20:59', 5000.00, 0.00, 5000.00, 'tunai', 22000.00, 17000.00, 'selesai', NULL),
+('PJ202609200007', 'kasir01', NULL, '2026-09-20 05:21:48', 5000.00, 0.00, 5000.00, 'tunai', 5000.00, 0.00, 'selesai', NULL),
+('PJ202609200008', 'kasir01', NULL, '2026-09-20 05:22:55', 34000.00, 0.00, 34000.00, 'tunai', 100000.00, 66000.00, 'selesai', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -244,8 +310,17 @@ CREATE TABLE `retur` (
   `tanggal_retur` datetime NOT NULL,
   `total_refund` decimal(18,2) NOT NULL DEFAULT 0.00,
   `alasan` text NOT NULL,
-  `status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending'
+  `status` enum('pending','approved','rejected') DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `retur`
+--
+
+INSERT INTO `retur` (`id_retur`, `id_penjualan`, `user_id_kasir`, `user_id_spv`, `tanggal_retur`, `total_refund`, `alasan`, `status`) VALUES
+('RT202609200001', 'PJ202609200001', 'kasir01', 'spv01', '2026-09-20 04:00:43', 7000.00, 'cacat pabrik', 'approved'),
+('RT202609200002', 'PJ202609200002', 'kasir01', 'spv01', '2026-09-20 04:07:00', 15000.00, 'Salah beli barang', 'approved'),
+('RT202609200003', 'PJ202609200003', 'kasir01', 'spv01', '2026-09-20 04:18:48', 5000.00, 'salah beli', 'approved');
 
 -- --------------------------------------------------------
 
@@ -330,12 +405,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `nama_user`, `password`, `role`, `id_supplier`, `aktif`, `created_at`) VALUES
-('admin01', 'admin', 'Administrator', '$2y$10$SvOsFOt4jsIsf/c6QlIn1OSecBZlNE9QmqLP/PkorraLGVXa0wiXm', 'admin', NULL, 1, '2026-09-17 05:24:26'),
-('inv_alfaria', 'budi', 'Budi Inventory', '$2y$10$SvOsFOt4jsIsf/c6QlIn1OSecBZlNE9QmqLP/PkorraLGVXa0wiXm', 'inventory', 'S0002', 1, '2026-09-17 05:24:26'),
+('admin01', 'admin', 'Administrator', '$2y$10$WL9xJuu2HRcK9jU5wN1xIuBvaYBpiF56bq0lnlWv6oGz2KbR8.s5O', 'admin', NULL, 1, '2026-09-17 05:24:26'),
+('inv_alfaria', 'budi', 'Budi Inventory', '$2y$10$kN2bfSGXJyM1AaYWxOxP0e/CwTYvGGSYctQn.UDaXek.GDmjOpY4q', 'inventory', 'S0002', 1, '2026-09-17 05:24:26'),
 ('inv_indomarco', 'gina', 'Gina Inventory', '$2y$10$SvOsFOt4jsIsf/c6QlIn1OSecBZlNE9QmqLP/PkorraLGVXa0wiXm', 'inventory', 'S0001', 1, '2026-09-17 05:24:26'),
-('kasir01', 'jiddan', 'Jiddan Kasir', '$2y$10$SvOsFOt4jsIsf/c6QlIn1OSecBZlNE9QmqLP/PkorraLGVXa0wiXm', 'kasir', NULL, 1, '2026-09-17 05:24:26'),
+('kasir01', 'jiddan', 'Jiddan Kasir', '$2y$10$G.C9bdu7Dn4wK.sNNuwFX.m.U.f707pTfpxomB9k0hGcSMiTFf7BK', 'kasir', NULL, 1, '2026-09-17 05:24:26'),
 ('owner01', 'reihan', 'Pak Reihan', '$2y$10$SvOsFOt4jsIsf/c6QlIn1OSecBZlNE9QmqLP/PkorraLGVXa0wiXm', 'owner', NULL, 1, '2026-09-17 05:24:26'),
-('spv01', 'rian', 'Rian Supervisor', '$2y$10$SvOsFOt4jsIsf/c6QlIn1OSecBZlNE9QmqLP/PkorraLGVXa0wiXm', 'supervisor', NULL, 1, '2026-09-17 05:24:26');
+('spv01', 'rian', 'Rian Supervisor', '$2y$10$Mz30/VCvaI6Bj5rZvPTF2ubrMjGfHkTaHY5oMpCILCNwKfMJXQley', 'supervisor', NULL, 1, '2026-09-17 05:24:26');
 
 --
 -- Indexes for dumped tables
@@ -398,6 +473,12 @@ ALTER TABLE `detail_retur_supplier`
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`),
   ADD UNIQUE KEY `uq_nama_kategori` (`nama_kategori`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `pembelian`
@@ -475,13 +556,19 @@ ALTER TABLE `detail_penjualan`
 -- AUTO_INCREMENT for table `detail_retur`
 --
 ALTER TABLE `detail_retur`
-  MODIFY `id_detail_retur` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detail_retur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `detail_retur_supplier`
 --
 ALTER TABLE `detail_retur_supplier`
   MODIFY `id_detail_rsup` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
