@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= esc($title ?? 'Dashboard - POS System') ?></title>
+    <title><?= esc($title ?? "Dashboard - POS System") ?></title>
     <!-- Bootstrap 5, FontAwesome, Chart.js -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
     
     <style>
-        /* Admin Panel Custom Styling */
-
         :root {
             --admin-primary: #a8732d;
             --admin-primary-dark: #8e6226;
@@ -32,7 +30,6 @@
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
 
-        /* --- SIDEBAR --- */
         .pc-sidebar {
             width: var(--sidebar-width);
             height: 100vh;
@@ -118,7 +115,6 @@
             display: inline-flex;
         }
 
-        /* Submenu Dropdown Styles */
         .pc-hasmenu .arrow-icon {
             margin-left: auto;
             font-size: 11px;
@@ -144,7 +140,6 @@
             font-size: 13px;
         }
 
-        /* --- HEADER --- */
         .pc-header {
             height: var(--header-height);
             background: #ffffff;
@@ -201,7 +196,6 @@
             font-size: 14px;
         }
 
-        /* --- CONTAINER --- */
         .pc-container {
             margin-top: var(--header-height);
             margin-left: var(--sidebar-width);
@@ -220,7 +214,6 @@
             color: #777;
         }
 
-        /* --- DASHBOARD STAT CARDS --- */
         .card-stat {
             position: relative;
             border: none;
@@ -239,7 +232,6 @@
         .card-gradient-warning { background: linear-gradient(135deg, #f6c23e 0%, #fcd570 100%); }
         .card-gradient-danger { background: linear-gradient(135deg, #e74a3b 0%, #f08277 100%); }
 
-        /* --- TABLES & CARDS --- */
         .card {
             border: 1px solid var(--card-border);
             border-radius: 12px;
@@ -275,7 +267,6 @@
             color: #444;
         }
 
-        /* Modals inputs */
         .form-label {
             font-weight: 600;
             font-size: 13px;
@@ -302,7 +293,6 @@
             border-color: var(--admin-primary-dark);
         }
 
-        /* Sidebar Hide State for responsiveness */
         body.sidebar-hidden .pc-sidebar {
             left: -260px;
         }
@@ -313,7 +303,6 @@
             margin-left: 0;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 1024px) {
             .pc-sidebar {
                 left: -260px;
@@ -332,166 +321,208 @@
 </head>
 <body>
 
+    <?php $isRecovery = session()->get('is_recovery_session'); ?>
+
+    <?php if ($isRecovery) : ?>
+        <div class="alert alert-warning border-0 rounded-0 mb-0 text-center fw-bold d-flex align-items-center justify-content-center gap-2 py-2" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1050; background-color: #ffc107; color: #000;">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>MODE RECOVERY AKTIF: Akses terbatas hanya ke halaman Master Users untuk manajemen/reset admin.</span>
+            <a href="<?= site_url('logout') ?>" class="btn btn-dark btn-sm ms-2 py-0">Logout</a>
+        </div>
+        <style>
+            .pc-header { top: 38px !important; }
+            .pc-sidebar { top: 38px !important; height: calc(100vh - 38px) !important; }
+            .pc-container { margin-top: calc(var(--header-height) + 38px) !important; }
+        </style>
+    <?php endif; ?>
+
     <!-- Sidebar Section -->
     <nav class="pc-sidebar" id="adminSidebar">
         <div class="navbar-wrapper">
             <div class="m-header">
                 <a href="<?= site_url('dashboard') ?>" class="logo-text">
-                    </i> POS <span>System</span>
+                    POS <span>System</span>
                 </a>
             </div>
             <div class="navbar-content">
                 <ul class="pc-navbar">
                     <?php $currentUri = uri_string(); ?>
-
-                    <li class="pc-item <?= $currentUri == 'dashboard' || $currentUri == '' ? 'active' : '' ?>">
-                        <a href="<?= site_url('dashboard') ?>" class="pc-link">
-                            <span class="pc-micon"><i class="fa-solid fa-gauge-high"></i></span>
-                            <span class="pc-mtext">Dashboard</span>
-                        </a>
-                    </li>
-
                     <?php $role = session()->get('role'); ?>
 
-                    <!-- Dropdown Data Master (Barang, Supplier, Kategori, Satuan, Users) -->
-                    <?php if (in_array($role, ['admin', 'inventory'], true)) : ?>
-                        <?php
-                            $isMasterActive = in_array($currentUri, ['barang', 'supplier', 'kategori', 'satuan', 'master-users'], true)
-                                || strpos($currentUri, 'barang') === 0
-                                || strpos($currentUri, 'supplier') === 0
-                                || strpos($currentUri, 'kategori') === 0
-                                || strpos($currentUri, 'satuan') === 0
-                                || strpos($currentUri, 'master-users') === 0;
-                        ?>
-                        <li class="pc-item pc-hasmenu <?= $isMasterActive ? 'active open' : '' ?>">
-                            <a href="#" class="pc-link" onclick="toggleSubmenu(event, this)">
-                                <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
-                                <span class="pc-mtext">Data Master</span>
-                                <i class="fa-solid fa-chevron-down arrow-icon"></i>
-                            </a>
-                            <ul class="pc-submenu <?= $isMasterActive ? 'show' : '' ?>">
-                                <?php if ($role === 'inventory' || $role === 'admin') : ?>
-                                    <li class="pc-item">
-                                        <a href="<?= site_url('barang') ?>" class="pc-link <?= strpos($currentUri, 'barang') === 0 ? 'text-warning fw-bold' : '' ?>">
-                                            <span class="pc-micon"><i class="fa-solid fa-box-archive"></i></span>
-                                            <span class="pc-mtext">Barang</span>
-                                        </a>
-                                    </li>
-                                    <li class="pc-item">
-                                        <a href="<?= site_url('supplier') ?>" class="pc-link <?= strpos($currentUri, 'supplier') === 0 ? 'text-warning fw-bold' : '' ?>">
-                                            <span class="pc-micon"><i class="fa-solid fa-truck-field"></i></span>
-                                            <span class="pc-mtext">Supplier</span>
-                                        </a>
-                                    </li>
-                                <?php endif; ?>
-
-                                <?php if ($role === 'admin') : ?>
-                                    <li class="pc-item">
-                                        <a href="<?= site_url('kategori') ?>" class="pc-link <?= strpos($currentUri, 'kategori') === 0 ? 'text-warning fw-bold' : '' ?>">
-                                            <span class="pc-micon"><i class="fa-solid fa-tags"></i></span>
-                                            <span class="pc-mtext">Kategori</span>
-                                        </a>
-                                    </li>
-                                    <li class="pc-item">
-                                        <a href="<?= site_url('satuan') ?>" class="pc-link <?= strpos($currentUri, 'satuan') === 0 ? 'text-warning fw-bold' : '' ?>">
-                                            <span class="pc-micon"><i class="fa-solid fa-scale-balanced"></i></span>
-                                            <span class="pc-mtext">Satuan</span>
-                                        </a>
-                                    </li>
-                                    <li class="pc-item">
-                                        <a href="<?= site_url('master-users') ?>" class="pc-link <?= strpos($currentUri, 'master-users') === 0 ? 'text-warning fw-bold' : '' ?>">
-                                            <span class="pc-micon"><i class="fa-solid fa-users-gear"></i></span>
-                                            <span class="pc-mtext">Users</span>
-                                        </a>
-                                    </li>
-                                <?php endif; ?>
-                            </ul>
-                        </li>
-                    <?php endif; ?>
-
-                    <!-- Modul Transaksi & Laporan -->
-                    <?php if ($role === 'kasir' || $role === 'admin') : ?>
-                        <?php
-                            $isPenjualanActive = strpos($currentUri, 'penjualan') === 0;
-                        ?>
-                        <li class="pc-item pc-hasmenu <?= $isPenjualanActive ? 'active open' : '' ?>">
-                            <a href="#" class="pc-link" onclick="toggleSubmenu(event, this)">
-                                <span class="pc-micon"><i class="fa-solid fa-cart-shopping"></i></span>
-                                <span class="pc-mtext">Kasir Penjualan</span>
-                                <i class="fa-solid fa-chevron-down arrow-icon"></i>
-                            </a>
-                            <ul class="pc-submenu <?= $isPenjualanActive ? 'show' : '' ?>">
-                                <li class="pc-item">
-                                    <a href="<?= site_url('penjualan') ?>" class="pc-link <?= $currentUri === 'penjualan' ? 'text-warning fw-bold' : '' ?>">
-                                        <span class="pc-micon"><i class="fa-solid fa-cash-register"></i></span>
-                                        <span class="pc-mtext">Transaksi POS</span>
-                                    </a>
-                                </li>
-                                <li class="pc-item">
-                                    <a href="<?= site_url('penjualan/riwayat') ?>" class="pc-link <?= strpos($currentUri, 'penjualan/riwayat') === 0 ? 'text-warning fw-bold' : '' ?>">
-                                        <span class="pc-micon"><i class="fa-solid fa-clock-rotate-left"></i></span>
-                                        <span class="pc-mtext">Riwayat & Struk</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    <?php endif; ?>
-
-                    <?php if ($role === 'inventory' || $role === 'admin') : ?>
-                        <li class="pc-item <?= strpos($currentUri, 'pembelian') === 0 ? 'active' : '' ?>">
-                            <a href="<?= site_url('pembelian') ?>" class="pc-link">
-                                <span class="pc-micon"><i class="fa-solid fa-boxes-packing"></i></span>
-                                <span class="pc-mtext">Pembelian / Stok</span>
+                    <!-- Jika Recovery Session: HANYA tampilkan menu Master Users -->
+                    <?php if ($isRecovery) : ?>
+                        <li class="pc-item active">
+                            <a href="<?= site_url('master-users') ?>" class="pc-link">
+                                <span class="pc-micon"><i class="fa-solid fa-users-gear"></i></span>
+                                <span class="pc-mtext">Master Users</span>
                             </a>
                         </li>
-                    <?php endif; ?>
+                    <?php else : ?>
 
-                    <?php if (in_array($role, ['kasir', 'supervisor', 'admin'], true)) : ?>
-                        <?php
-                            $isReturActive = strpos($currentUri, 'retur-customer') === 0;
-                        ?>
-                        <li class="pc-item pc-hasmenu <?= $isReturActive ? 'active open' : '' ?>">
-                            <a href="#" class="pc-link" onclick="toggleSubmenu(event, this)">
-                                <span class="pc-micon"><i class="fa-solid fa-rotate-left"></i></span>
-                                <span class="pc-mtext"><?= $role === 'supervisor' ? 'Approval Retur' : 'Retur Customer' ?></span>
-                                <i class="fa-solid fa-chevron-down arrow-icon"></i>
-                            </a>
-                            <ul class="pc-submenu <?= $isReturActive ? 'show' : '' ?>">
-                                <?php if ($role === 'supervisor' || $role === 'admin') : ?>
-                                    <li class="pc-item">
-                                        <a href="<?= site_url('retur-customer/approval') ?>" class="pc-link <?= strpos($currentUri, 'retur-customer/approval') === 0 ? 'text-warning fw-bold' : '' ?>">
-                                            <span class="pc-micon"><i class="fa-solid fa-user-check"></i></span>
-                                            <span class="pc-mtext">Antrean Approval</span>
-                                        </a>
-                                    </li>
-                                <?php endif; ?>
-
-                                <?php if ($role === 'kasir' || $role === 'admin') : ?>
-                                    <li class="pc-item">
-                                        <a href="<?= site_url('retur-customer') ?>" class="pc-link <?= $currentUri === 'retur-customer' ? 'text-warning fw-bold' : '' ?>">
-                                            <span class="pc-micon"><i class="fa-solid fa-file-signature"></i></span>
-                                            <span class="pc-mtext">Pengajuan Retur</span>
-                                        </a>
-                                    </li>
-                                <?php endif; ?>
-
-                                <li class="pc-item">
-                                    <a href="<?= site_url('retur-customer/riwayat') ?>" class="pc-link <?= strpos($currentUri, 'retur-customer/riwayat') === 0 ? 'text-warning fw-bold' : '' ?>">
-                                        <span class="pc-micon"><i class="fa-solid fa-clock-rotate-left"></i></span>
-                                        <span class="pc-mtext">Riwayat Retur</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    <?php endif; ?>
-
-                    <?php if ($role === 'owner' || $role === 'admin') : ?>
-                        <li class="pc-item <?= strpos($currentUri, 'laporan') === 0 ? 'active' : '' ?>">
-                            <a href="<?= site_url('laporan') ?>" class="pc-link">
-                                <span class="pc-micon"><i class="fa-solid fa-chart-line"></i></span>
-                                <span class="pc-mtext">Laporan Keuangan</span>
+                        <li class="pc-item <?= $currentUri == 'dashboard' || $currentUri == '' ? 'active' : '' ?>">
+                            <a href="<?= site_url('dashboard') ?>" class="pc-link">
+                                <span class="pc-micon"><i class="fa-solid fa-gauge-high"></i></span>
+                                <span class="pc-mtext">Dashboard</span>
                             </a>
                         </li>
+
+                        <!-- Dropdown Data Master (Barang, Supplier, Kategori, Satuan, Users) -->
+                        <?php if (in_array($role, ['admin', 'inventory'], true)) : ?>
+                            <?php
+                                $isMasterActive = in_array($currentUri, ['barang', 'supplier', 'kategori', 'satuan', 'master-users'], true)
+                                    || strpos($currentUri, 'barang') === 0
+                                    || strpos($currentUri, 'supplier') === 0
+                                    || strpos($currentUri, 'kategori') === 0
+                                    || strpos($currentUri, 'satuan') === 0
+                                    || strpos($currentUri, 'master-users') === 0;
+                            ?>
+                            <li class="pc-item pc-hasmenu <?= $isMasterActive ? 'active open' : '' ?>">
+                                <a href="#" class="pc-link" onclick="toggleSubmenu(event, this)">
+                                    <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                                    <span class="pc-mtext">Data Master</span>
+                                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                                </a>
+                                <ul class="pc-submenu <?= $isMasterActive ? 'show' : '' ?>">
+                                    <?php if ($role === 'inventory' || $role === 'admin') : ?>
+                                        <li class="pc-item">
+                                            <a href="<?= site_url('barang') ?>" class="pc-link <?= strpos($currentUri, 'barang') === 0 ? 'text-warning fw-bold' : '' ?>">
+                                                <span class="pc-micon"><i class="fa-solid fa-box-archive"></i></span>
+                                                <span class="pc-mtext">Barang</span>
+                                            </a>
+                                        </li>
+                                        <li class="pc-item">
+                                            <a href="<?= site_url('supplier') ?>" class="pc-link <?= strpos($currentUri, 'supplier') === 0 ? 'text-warning fw-bold' : '' ?>">
+                                                <span class="pc-micon"><i class="fa-solid fa-truck-field"></i></span>
+                                                <span class="pc-mtext">Supplier</span>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+
+                                    <?php if ($role === 'admin') : ?>
+                                        <li class="pc-item">
+                                            <a href="<?= site_url('kategori') ?>" class="pc-link <?= strpos($currentUri, 'kategori') === 0 ? 'text-warning fw-bold' : '' ?>">
+                                                <span class="pc-micon"><i class="fa-solid fa-tags"></i></span>
+                                                <span class="pc-mtext">Kategori</span>
+                                            </a>
+                                        </li>
+                                        <li class="pc-item">
+                                            <a href="<?= site_url('satuan') ?>" class="pc-link <?= strpos($currentUri, 'satuan') === 0 ? 'text-warning fw-bold' : '' ?>">
+                                                <span class="pc-micon"><i class="fa-solid fa-scale-balanced"></i></span>
+                                                <span class="pc-mtext">Satuan</span>
+                                            </a>
+                                        </li>
+                                        <li class="pc-item">
+                                            <a href="<?= site_url('master-users') ?>" class="pc-link <?= strpos($currentUri, 'master-users') === 0 ? 'text-warning fw-bold' : '' ?>">
+                                                <span class="pc-micon"><i class="fa-solid fa-users-gear"></i></span>
+                                                <span class="pc-mtext">Users</span>
+                                            </a>
+                                        </li>
+                                        <li class="pc-item">
+                                            <a href="<?= site_url('backup') ?>" class="pc-link <?= strpos($currentUri, 'backup') === 0 ? 'text-warning fw-bold' : '' ?>">
+                                                <span class="pc-micon"><i class="fa-solid fa-database"></i></span>
+                                                <span class="pc-mtext">Backup & Restore</span>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
+
+                        <!-- Modul Transaksi & Laporan -->
+                        <?php if ($role === 'kasir' || $role === 'admin') : ?>
+                            <?php
+                                $isPenjualanActive = strpos($currentUri, 'penjualan') === 0;
+                            ?>
+                            <li class="pc-item pc-hasmenu <?= $isPenjualanActive ? 'active open' : '' ?>">
+                                <a href="#" class="pc-link" onclick="toggleSubmenu(event, this)">
+                                    <span class="pc-micon"><i class="fa-solid fa-cart-shopping"></i></span>
+                                    <span class="pc-mtext">Kasir Penjualan</span>
+                                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                                </a>
+                                <ul class="pc-submenu <?= $isPenjualanActive ? 'show' : '' ?>">
+                                    <li class="pc-item">
+                                        <a href="<?= site_url('penjualan') ?>" class="pc-link <?= $currentUri === 'penjualan' ? 'text-warning fw-bold' : '' ?>">
+                                            <span class="pc-micon"><i class="fa-solid fa-cash-register"></i></span>
+                                            <span class="pc-mtext">Transaksi POS</span>
+                                        </a>
+                                    </li>
+                                    <li class="pc-item">
+                                        <a href="<?= site_url('penjualan/riwayat') ?>" class="pc-link <?= strpos($currentUri, 'penjualan/riwayat') === 0 ? 'text-warning fw-bold' : '' ?>">
+                                            <span class="pc-micon"><i class="fa-solid fa-clock-rotate-left"></i></span>
+                                            <span class="pc-mtext">Riwayat & Struk</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
+
+                        <?php if ($role === 'inventory' || $role === 'admin') : ?>
+                            <li class="pc-item <?= strpos($currentUri, 'pembelian') === 0 ? 'active' : '' ?>">
+                                <a href="<?= site_url('pembelian') ?>" class="pc-link">
+                                    <span class="pc-micon"><i class="fa-solid fa-boxes-packing"></i></span>
+                                    <span class="pc-mtext">Pembelian / Stok</span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+
+                        <?php if (in_array($role, ['kasir', 'supervisor', 'admin'], true)) : ?>
+                            <?php
+                                $isReturActive = strpos($currentUri, 'retur-customer') === 0;
+                            ?>
+                            <li class="pc-item pc-hasmenu <?= $isReturActive ? 'active open' : '' ?>">
+                                <a href="#" class="pc-link" onclick="toggleSubmenu(event, this)">
+                                    <span class="pc-micon"><i class="fa-solid fa-rotate-left"></i></span>
+                                    <span class="pc-mtext"><?= $role === 'supervisor' ? 'Approval Retur' : 'Retur Customer' ?></span>
+                                    <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                                </a>
+                                <ul class="pc-submenu <?= $isReturActive ? 'show' : '' ?>">
+                                    <?php if ($role === 'supervisor' || $role === 'admin') : ?>
+                                        <li class="pc-item">
+                                            <a href="<?= site_url('retur-customer/approval') ?>" class="pc-link <?= strpos($currentUri, 'retur-customer/approval') === 0 ? 'text-warning fw-bold' : '' ?>">
+                                                <span class="pc-micon"><i class="fa-solid fa-user-check"></i></span>
+                                                <span class="pc-mtext">Antrean Approval</span>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+
+                                    <?php if ($role === 'kasir' || $role === 'admin') : ?>
+                                        <li class="pc-item">
+                                            <a href="<?= site_url('retur-customer') ?>" class="pc-link <?= $currentUri === 'retur-customer' ? 'text-warning fw-bold' : '' ?>">
+                                                <span class="pc-micon"><i class="fa-solid fa-file-signature"></i></span>
+                                                <span class="pc-mtext">Pengajuan Retur</span>
+                                            </a>
+                                        </li>
+                                    <?php endif; ?>
+
+                                    <li class="pc-item">
+                                        <a href="<?= site_url('retur-customer/riwayat') ?>" class="pc-link <?= strpos($currentUri, 'retur-customer/riwayat') === 0 ? 'text-warning fw-bold' : '' ?>">
+                                            <span class="pc-micon"><i class="fa-solid fa-clock-rotate-left"></i></span>
+                                            <span class="pc-mtext">Riwayat Retur</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
+
+                        <?php if ($role === 'owner' || $role === 'admin') : ?>
+                            <li class="pc-item <?= strpos($currentUri, 'laporan') === 0 ? 'active' : '' ?>">
+                                <a href="<?= site_url('laporan') ?>" class="pc-link">
+                                    <span class="pc-micon"><i class="fa-solid fa-chart-line"></i></span>
+                                    <span class="pc-mtext">Laporan Keuangan</span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+
+                        <!-- Menu Khusus Owner: Kelola Recovery Key -->
+                        <?php if ($role === 'owner') : ?>
+                            <li class="pc-item <?= strpos($currentUri, 'recovery-keys') === 0 ? 'active' : '' ?>">
+                                <a href="<?= site_url('recovery-keys') ?>" class="pc-link">
+                                    <span class="pc-micon"><i class="fa-solid fa-key text-warning"></i></span>
+                                    <span class="pc-mtext">Kelola Recovery Key</span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+
                     <?php endif; ?>
 
                     <li class="pc-item mt-4">
@@ -505,7 +536,7 @@
         </div>
     </nav>
 
-    <!-- Header Section (Clean Streamlined Navbar Without Title Heading) -->
+    <!-- Header Section -->
     <header class="pc-header" id="adminHeader">
         <div class="header-wrapper">
             <div class="d-flex align-items-center gap-3">
@@ -520,7 +551,9 @@
                     </div>
                     <div class="d-none d-md-block">
                         <span class="user-name d-block"><?= esc(session()->get('nama_user')) ?></span>
-                        <span class="badge bg-warning text-dark font-weight-bold" style="font-size: 11px;"><?= esc(strtoupper(session()->get('role'))) ?></span>
+                        <span class="badge bg-danger text-white font-weight-bold" style="font-size: 11px;">
+                            <?= $isRecovery ? 'RECOVERY MODE' : esc(strtoupper(session()->get('role'))) ?>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -531,7 +564,6 @@
     <div class="pc-container">
         <div class="pc-content">
 
-            <!-- Flash Success Alert -->
             <?php if (session()->getFlashdata('success')) : ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <i class="fa-solid fa-circle-check me-2"></i> <?= esc(session()->getFlashdata('success')) ?>
@@ -539,10 +571,16 @@
                 </div>
             <?php endif; ?>
 
-            <!-- Flash Error Alert -->
             <?php if (session()->getFlashdata('error')) : ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <i class="fa-solid fa-triangle-exclamation me-2"></i> <?= esc(session()->getFlashdata('error')) ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
+
+            <?php if (session()->getFlashdata('warning')) : ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <i class="fa-solid fa-triangle-exclamation me-2"></i> <?= esc(session()->getFlashdata('warning')) ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif; ?>
