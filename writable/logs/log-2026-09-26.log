@@ -1,0 +1,739 @@
+ERROR - 2026-09-26 16:34:55 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#10 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#7 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2026-09-26 16:34:55 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: POST, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `username` = :username:
+AND `aktif` = :aktif:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+ 6 APPPATH\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Pos-System-Market\\public\\index.php')
+ERROR - 2026-09-26 16:35:02 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#10 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#7 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2026-09-26 16:35:02 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: POST, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `username` = :username:
+AND `aktif` = :aktif:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+ 6 APPPATH\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Pos-System-Market\\public\\index.php')
+ERROR - 2026-09-26 16:35:19 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#10 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#7 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2026-09-26 16:35:19 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: POST, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `username` = :username:
+AND `aktif` = :aktif:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+ 6 APPPATH\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Pos-System-Market\\public\\index.php')
+ERROR - 2026-09-26 16:36:40 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#10 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#7 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2026-09-26 16:36:40 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: POST, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `username` = :username:
+AND `aktif` = :aktif:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+ 6 APPPATH\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Pos-System-Market\\public\\index.php')
+ERROR - 2026-09-26 16:36:47 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#10 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#7 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2026-09-26 16:36:47 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: POST, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `username` = :username:
+AND `aktif` = :aktif:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+ 6 APPPATH\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Pos-System-Market\\public\\index.php')
+ERROR - 2026-09-26 16:38:38 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#10 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#7 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2026-09-26 16:38:38 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: POST, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `username` = :username:
+AND `aktif` = :aktif:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+ 6 APPPATH\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Pos-System-Market\\public\\index.php')
+ERROR - 2026-09-26 16:38:45 --> Error connecting to the database: mysqli_sql_exception: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php(201): mysqli->real_connect('localhost', '', Object(SensitiveParameterValue), '', 3306, '', 0)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#6 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#7 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#10 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#12 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#15 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user ''@'localhost' (using password: NO) in C:\laragon\www\Pos-System-Market\system\Database\MySQLi\Connection.php:231
+Stack trace:
+#0 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(555): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\laragon\www\Pos-System-Market\system\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\laragon\www\Pos-System-Market\system\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\laragon\www\Pos-System-Market\system\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\laragon\www\Pos-System-Market\system\BaseModel.php(714): CodeIgniter\Model->doFirst()
+#5 C:\laragon\www\Pos-System-Market\app\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+#6 C:\laragon\www\Pos-System-Market\app\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+#7 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+#8 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\laragon\www\Pos-System-Market\system\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\laragon\www\Pos-System-Market\system\Boot.php(417): CodeIgniter\CodeIgniter->run()
+#11 C:\laragon\www\Pos-System-Market\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 C:\laragon\www\Pos-System-Market\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 C:\laragon\www\Pos-System-Market\system\rewrite.php(44): require_once('C:\\laragon\\www\\...')
+#14 {main}
+CRITICAL - 2026-09-26 16:38:45 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+[Method: POST, Route: login]
+in SYSTEMPATH\Database\BaseConnection.php on line 606.
+ 1 SYSTEMPATH\Database\BaseConnection.php(795): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1659): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `users`
+WHERE `username` = :username:
+AND `aktif` = :aktif:
+ LIMIT 1', [...], false)
+ 3 SYSTEMPATH\Model.php(297): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(714): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Models\UserModel.php(36): CodeIgniter\BaseModel->first()
+ 6 APPPATH\Controllers\Auth.php(65): App\Models\UserModel->getActiveUserByUsername('admin')
+ 7 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Auth->processLogin()
+ 8 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Pos-System-Market\\public\\index.php')
+DEBUG - 2026-09-26 16:57:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 16:58:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 16:58:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 16:58:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 16:58:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 16:58:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 17:01:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 17:01:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 17:01:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2026-09-26 17:59:06 --> Duplicate column name 'user_id_kasir'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('ALTER TABLE `retur`
+	ADD `user_id_kasir` VARCHAR(15) NULL AFTER `id_penjualan`,
+	ADD `status` ENUM(\'pending\',\'approved\',\'rejected\') DEFAULT \'pending\' AFTER `alasan`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('ALTER TABLE `retur`
+	ADD `user_id_kasir` VARCHAR(15) NULL AFTER `id_penjualan`,
+	ADD `status` ENUM(\'pending\',\'approved\',\'rejected\') DEFAULT \'pending\' AFTER `alasan`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('ALTER TABLE `retur`
+	ADD `user_id_kasir` VARCHAR(15) NULL AFTER `id_penjualan`,
+	ADD `status` ENUM(\'pending\',\'approved\',\'rejected\') DEFAULT \'pending\' AFTER `alasan`')
+ 4 SYSTEMPATH\Database\Forge.php(772): CodeIgniter\Database\BaseConnection->query('ALTER TABLE `retur`
+	ADD `user_id_kasir` VARCHAR(15) NULL AFTER `id_penjualan`,
+	ADD `status` ENUM(\'pending\',\'approved\',\'rejected\') DEFAULT \'pending\' AFTER `alasan`')
+ 5 APPPATH\Database\Migrations\2026-09-20-034913_AddStatusAndKasirToReturTable.php(19): CodeIgniter\Database\Forge->addColumn('retur', [...])
+ 6 SYSTEMPATH\Database\MigrationRunner.php(1014): App\Database\Migrations\AddStatusAndKasirToReturTable->up()
+ 7 SYSTEMPATH\Database\MigrationRunner.php(202): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+ 8 SYSTEMPATH\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(null)
+ 9 SYSTEMPATH\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::CodeIgniter\Commands\Database\{closure}()
+10 SYSTEMPATH\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
+11 SYSTEMPATH\CLI\Commands.php(72): CodeIgniter\Commands\Database\Migrate->run([])
+12 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', [])
+13 SYSTEMPATH\Boot.php(444): CodeIgniter\CLI\Console->run()
+14 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+15 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-09-26 18:02:58 --> Error: Class "App\Models\RecoveryKeyModel" not found
+[Method: CLI, Route: recovery:generate]
+in APPPATH\Commands\RecoveryGenerate.php on line 32.
+ 1 SYSTEMPATH\CLI\Commands.php(72): App\Commands\RecoveryGenerate->run([...])
+ 2 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('recovery:generate', [...])
+ 3 SYSTEMPATH\Boot.php(444): CodeIgniter\CLI\Console->run()
+ 4 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+ 5 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+ERROR - 2026-09-26 18:03:27 --> Table 'posystem_baru.recovery_keys' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `recovery_keys` (`key_hash`, `label`, `expires_at`) VALUES (\'$2y$10$72lyCWf8Ot9GiwGlQUPuqOJwr.hLvcw0DQ2pm8m6943F6cjw56Tw.\', \'Key-20260926180327\', \'2026-10-26 18:03:27\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `recovery_keys` (`key_hash`, `label`, `expires_at`) VALUES (\'$2y$10$72lyCWf8Ot9GiwGlQUPuqOJwr.hLvcw0DQ2pm8m6943F6cjw56Tw.\', \'Key-20260926180327\', \'2026-10-26 18:03:27\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `recovery_keys` (`key_hash`, `label`, `expires_at`) VALUES (\'$2y$10$72lyCWf8Ot9GiwGlQUPuqOJwr.hLvcw0DQ2pm8m6943F6cjw56Tw.\', \'Key-20260926180327\', \'2026-10-26 18:03:27\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2355): CodeIgniter\Database\BaseConnection->query('INSERT INTO `recovery_keys` (`key_hash`, `label`, `expires_at`) VALUES (:key_hash:, :label:, :expires_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(357): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(670): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Commands\RecoveryGenerate.php(48): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CLI\Commands.php(72): App\Commands\RecoveryGenerate->run([...])
+10 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('recovery:generate', [...])
+11 SYSTEMPATH\Boot.php(444): CodeIgniter\CLI\Console->run()
+12 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+13 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-09-26 18:03:27 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'posystem_baru.recovery_keys' doesn't exist
+[Method: CLI, Route: recovery:generate]
+in SYSTEMPATH\Database\BaseConnection.php on line 863.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2355): CodeIgniter\Database\BaseConnection->query('INSERT INTO `recovery_keys` (`key_hash`, `label`, `expires_at`) VALUES (:key_hash:, :label:, :expires_at:)', [...], false)
+ 2 SYSTEMPATH\Model.php(357): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(670): CodeIgniter\BaseModel->insert([...], true)
+ 5 APPPATH\Commands\RecoveryGenerate.php(48): CodeIgniter\Model->insert([...])
+ 6 SYSTEMPATH\CLI\Commands.php(72): App\Commands\RecoveryGenerate->run([...])
+ 7 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('recovery:generate', [...])
+ 8 SYSTEMPATH\Boot.php(444): CodeIgniter\CLI\Console->run()
+ 9 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+10 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-09-26 18:03:27 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'posystem_baru.recovery_keys' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 310.
+ 1 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `recovery_keys` (`key_hash`, `label`, `expires_at`) VALUES (\'$2y$10$72lyCWf8Ot9GiwGlQUPuqOJwr.hLvcw0DQ2pm8m6943F6cjw56Tw.\', \'Key-20260926180327\', \'2026-10-26 18:03:27\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `recovery_keys` (`key_hash`, `label`, `expires_at`) VALUES (\'$2y$10$72lyCWf8Ot9GiwGlQUPuqOJwr.hLvcw0DQ2pm8m6943F6cjw56Tw.\', \'Key-20260926180327\', \'2026-10-26 18:03:27\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2355): CodeIgniter\Database\BaseConnection->query('INSERT INTO `recovery_keys` (`key_hash`, `label`, `expires_at`) VALUES (:key_hash:, :label:, :expires_at:)', [...], false)
+ 4 SYSTEMPATH\Model.php(357): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(670): CodeIgniter\BaseModel->insert([...], true)
+ 7 APPPATH\Commands\RecoveryGenerate.php(48): CodeIgniter\Model->insert([...])
+ 8 SYSTEMPATH\CLI\Commands.php(72): App\Commands\RecoveryGenerate->run([...])
+ 9 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('recovery:generate', [...])
+10 SYSTEMPATH\Boot.php(444): CodeIgniter\CLI\Console->run()
+11 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+12 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-09-26 18:03:27 --> [Caused by] mysqli_sql_exception: Table 'posystem_baru.recovery_keys' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `recovery_keys` (`key_hash`, `label`, `expires_at`) VALUES (\'$2y$10$72lyCWf8Ot9GiwGlQUPuqOJwr.hLvcw0DQ2pm8m6943F6cjw56Tw.\', \'Key-20260926180327\', \'2026-10-26 18:03:27\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `recovery_keys` (`key_hash`, `label`, `expires_at`) VALUES (\'$2y$10$72lyCWf8Ot9GiwGlQUPuqOJwr.hLvcw0DQ2pm8m6943F6cjw56Tw.\', \'Key-20260926180327\', \'2026-10-26 18:03:27\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `recovery_keys` (`key_hash`, `label`, `expires_at`) VALUES (\'$2y$10$72lyCWf8Ot9GiwGlQUPuqOJwr.hLvcw0DQ2pm8m6943F6cjw56Tw.\', \'Key-20260926180327\', \'2026-10-26 18:03:27\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2355): CodeIgniter\Database\BaseConnection->query('INSERT INTO `recovery_keys` (`key_hash`, `label`, `expires_at`) VALUES (:key_hash:, :label:, :expires_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(357): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(899): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(670): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Commands\RecoveryGenerate.php(48): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CLI\Commands.php(72): App\Commands\RecoveryGenerate->run([...])
+10 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('recovery:generate', [...])
+11 SYSTEMPATH\Boot.php(444): CodeIgniter\CLI\Console->run()
+12 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+13 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+ERROR - 2026-09-26 18:15:08 --> Duplicate column name 'user_id_kasir'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('ALTER TABLE `retur`
+	ADD `user_id_kasir` VARCHAR(15) NULL AFTER `id_penjualan`,
+	ADD `status` ENUM(\'pending\',\'approved\',\'rejected\') DEFAULT \'pending\' AFTER `alasan`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('ALTER TABLE `retur`
+	ADD `user_id_kasir` VARCHAR(15) NULL AFTER `id_penjualan`,
+	ADD `status` ENUM(\'pending\',\'approved\',\'rejected\') DEFAULT \'pending\' AFTER `alasan`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('ALTER TABLE `retur`
+	ADD `user_id_kasir` VARCHAR(15) NULL AFTER `id_penjualan`,
+	ADD `status` ENUM(\'pending\',\'approved\',\'rejected\') DEFAULT \'pending\' AFTER `alasan`')
+ 4 SYSTEMPATH\Database\Forge.php(772): CodeIgniter\Database\BaseConnection->query('ALTER TABLE `retur`
+	ADD `user_id_kasir` VARCHAR(15) NULL AFTER `id_penjualan`,
+	ADD `status` ENUM(\'pending\',\'approved\',\'rejected\') DEFAULT \'pending\' AFTER `alasan`')
+ 5 APPPATH\Database\Migrations\2026-09-20-034913_AddStatusAndKasirToReturTable.php(19): CodeIgniter\Database\Forge->addColumn('retur', [...])
+ 6 SYSTEMPATH\Database\MigrationRunner.php(1014): App\Database\Migrations\AddStatusAndKasirToReturTable->up()
+ 7 SYSTEMPATH\Database\MigrationRunner.php(202): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+ 8 SYSTEMPATH\Commands\Database\Migrate.php(89): CodeIgniter\Database\MigrationRunner->latest(null)
+ 9 SYSTEMPATH\CLI\SignalTrait.php(245): CodeIgniter\Commands\Database\Migrate::CodeIgniter\Commands\Database\{closure}()
+10 SYSTEMPATH\Commands\Database\Migrate.php(88): CodeIgniter\Commands\Database\Migrate->withSignalsBlocked(Object(Closure))
+11 SYSTEMPATH\CLI\Commands.php(72): CodeIgniter\Commands\Database\Migrate->run([])
+12 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('migrate', [])
+13 SYSTEMPATH\Boot.php(444): CodeIgniter\CLI\Console->run()
+14 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+15 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-09-26 18:17:29 --> Error: Class "App\Models\RecoveryKeyModel" not found
+[Method: CLI, Route: recovery:generate]
+in APPPATH\Commands\RecoveryGenerate.php on line 66.
+ 1 SYSTEMPATH\CLI\Commands.php(72): App\Commands\RecoveryGenerate->run([...])
+ 2 SYSTEMPATH\CLI\Console.php(47): CodeIgniter\CLI\Commands->run('recovery:generate', [...])
+ 3 SYSTEMPATH\Boot.php(444): CodeIgniter\CLI\Console->run()
+ 4 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+ 5 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-09-26 18:23:42 --> ParseError: syntax error, unexpected double-quoted string "Pak Reihan Owner", expecting "]"
+[Method: CLI, Route: recovery:generate]
+in APPPATH\Commands\RecoveryGenerate.php on line 16.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(320): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\laragon\\www\\Pos-System-Market\\app\\Commands\\RecoveryGenerate.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(296): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Commands\\RecoveryGenerate')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Commands\\RecoveryGenerate')
+ 4 SYSTEMPATH\Autoloader\FileLocator.php(306): class_exists('App\\Commands\\RecoveryGenerate')
+ 5 SYSTEMPATH\CLI\Commands.php(111): CodeIgniter\Autoloader\FileLocator->findQualifiedNameFromPath('C:\\laragon\\www\\Pos-System-Market\\app\\Commands\\RecoveryGenerate.php')
+ 6 SYSTEMPATH\CLI\Commands.php(51): CodeIgniter\CLI\Commands->discoverCommands()
+ 7 SYSTEMPATH\Config\Services.php(178): CodeIgniter\CLI\Commands->__construct()
+ 8 SYSTEMPATH\Config\BaseService.php(325): CodeIgniter\Config\Services::commands(false)
+ 9 SYSTEMPATH\Config\BaseService.php(264): CodeIgniter\Config\BaseService::__callStatic('commands', [...])
+10 SYSTEMPATH\Config\Services.php(175): CodeIgniter\Config\BaseService::getSharedInstance('commands')
+11 SYSTEMPATH\Config\BaseService.php(334): CodeIgniter\Config\Services::commands()
+12 SYSTEMPATH\Config\BaseService.php(203): CodeIgniter\Config\BaseService::__callStatic('commands', [])
+13 SYSTEMPATH\Common.php(1096): CodeIgniter\Config\BaseService::get('commands')
+14 SYSTEMPATH\CLI\Console.php(47): service('commands')
+15 SYSTEMPATH\Boot.php(444): CodeIgniter\CLI\Console->run()
+16 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
+17 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+DEBUG - 2026-09-26 18:25:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:25:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:25:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:25:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:25:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:28:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:28:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:28:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:28:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:28:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:28:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:28:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:28:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:28:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:30:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:30:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:30:22 --> [RECOVERY] Session berhasil dibuat dari IP: ::1
+DEBUG - 2026-09-26 18:30:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:31:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:35:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-26 18:36:01 --> [RECOVERY] Percobaan gagal dari IP: ::1
+DEBUG - 2026-09-26 18:36:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:36:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:36:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:36:51 --> [RECOVERY] Session berhasil dibuat dari IP: ::1
+DEBUG - 2026-09-26 18:36:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:37:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:37:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:37:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:37:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:37:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:37:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:40:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:40:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:40:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:40:48 --> [BACKUP] Backup dibuat: backup_20260926_184048.sql oleh: temp-admin
+DEBUG - 2026-09-26 18:40:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:42:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:42:53 --> [BACKUP] Safety backup sebelum restore: backup_20260926_184253.sql
+ERROR - 2026-09-26 18:42:53 --> The value specified for generated column 'subtotal' in table 'detail_pembelian' is not allowed.
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `detail_pembelian` (`id_detail_beli`, `id_pembelian`, `id_barang`, `harga_beli`, `jumlah`, `subtotal`, `tgl_kadaluarsa`) VALUES
+(1, \'PB202609170001\', \'B0001\', 3500.00, 50, 175000.00, NULL),
+(2, \'PB202609170002\', \'B0002\', 2200.00, 120, 264000.00, NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `detail_pembelian` (`id_detail_beli`, `id_pembelian`, `id_barang`, `harga_beli`, `jumlah`, `subtotal`, `tgl_kadaluarsa`) VALUES
+(1, \'PB202609170001\', \'B0001\', 3500.00, 50, 175000.00, NULL),
+(2, \'PB202609170002\', \'B0002\', 2200.00, 120, 264000.00, NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `detail_pembelian` (`id_detail_beli`, `id_pembelian`, `id_barang`, `harga_beli`, `jumlah`, `subtotal`, `tgl_kadaluarsa`) VALUES
+(1, \'PB202609170001\', \'B0001\', 3500.00, 50, 175000.00, NULL),
+(2, \'PB202609170002\', \'B0002\', 2200.00, 120, 264000.00, NULL)')
+ 4 APPPATH\Libraries\DatabaseExporter.php(145): CodeIgniter\Database\BaseConnection->query('INSERT INTO `detail_pembelian` (`id_detail_beli`, `id_pembelian`, `id_barang`, `harga_beli`, `jumlah`, `subtotal`, `tgl_kadaluarsa`) VALUES
+(1, \'PB202609170001\', \'B0001\', 3500.00, 50, 175000.00, NULL),
+(2, \'PB202609170002\', \'B0002\', 2200.00, 120, 264000.00, NULL)')
+ 5 APPPATH\Controllers\Backup.php(101): App\Libraries\DatabaseExporter->restore('backup_20260926_184048.sql')
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Backup->restore('backup_20260926_184048.sql')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Backup))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Pos-System-Market\\public\\index.php')
+ERROR - 2026-09-26 18:42:53 --> [DatabaseExporter] Restore gagal: The value specified for generated column 'subtotal' in table 'detail_pembelian' is not allowed.
+DEBUG - 2026-09-26 18:42:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:44:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:44:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:45:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:45:06 --> [BACKUP] Safety backup sebelum restore: backup_20260926_184506.sql
+ERROR - 2026-09-26 18:45:06 --> The value specified for generated column 'subtotal' in table 'detail_pembelian' is not allowed.
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 300.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(300): mysqli->query('INSERT INTO `detail_pembelian` (`id_detail_beli`, `id_pembelian`, `id_barang`, `harga_beli`, `jumlah`, `subtotal`, `tgl_kadaluarsa`) VALUES
+(1, \'PB202609170001\', \'B0001\', 3500.00, 50, 175000.00, NULL),
+(2, \'PB202609170002\', \'B0002\', 2200.00, 120, 264000.00, NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(908): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `detail_pembelian` (`id_detail_beli`, `id_pembelian`, `id_barang`, `harga_beli`, `jumlah`, `subtotal`, `tgl_kadaluarsa`) VALUES
+(1, \'PB202609170001\', \'B0001\', 3500.00, 50, 175000.00, NULL),
+(2, \'PB202609170002\', \'B0002\', 2200.00, 120, 264000.00, NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(825): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `detail_pembelian` (`id_detail_beli`, `id_pembelian`, `id_barang`, `harga_beli`, `jumlah`, `subtotal`, `tgl_kadaluarsa`) VALUES
+(1, \'PB202609170001\', \'B0001\', 3500.00, 50, 175000.00, NULL),
+(2, \'PB202609170002\', \'B0002\', 2200.00, 120, 264000.00, NULL)')
+ 4 APPPATH\Libraries\DatabaseExporter.php(165): CodeIgniter\Database\BaseConnection->query('INSERT INTO `detail_pembelian` (`id_detail_beli`, `id_pembelian`, `id_barang`, `harga_beli`, `jumlah`, `subtotal`, `tgl_kadaluarsa`) VALUES
+(1, \'PB202609170001\', \'B0001\', 3500.00, 50, 175000.00, NULL),
+(2, \'PB202609170002\', \'B0002\', 2200.00, 120, 264000.00, NULL)')
+ 5 APPPATH\Controllers\Backup.php(101): App\Libraries\DatabaseExporter->restore('backup_20260926_184048.sql')
+ 6 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Backup->restore('backup_20260926_184048.sql')
+ 7 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Backup))
+ 8 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\laragon\\www\\Pos-System-Market\\public\\index.php')
+ERROR - 2026-09-26 18:45:06 --> [DatabaseExporter] Restore gagal: The value specified for generated column 'subtotal' in table 'detail_pembelian' is not allowed.
+DEBUG - 2026-09-26 18:45:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:45:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:45:20 --> [BACKUP] Backup dibuat: backup_20260926_184520.sql oleh: temp-admin
+DEBUG - 2026-09-26 18:45:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:45:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:45:32 --> [BACKUP] Safety backup sebelum restore: backup_20260926_184532.sql
+INFO - 2026-09-26 18:45:33 --> [BACKUP] Restore berhasil dari: backup_20260926_184520.sql oleh: temp-admin
+DEBUG - 2026-09-26 18:45:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:45:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:45:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:45:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:45:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:45:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:45:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:45:46 --> [BACKUP] Hapus: backup_20260926_184532.sql oleh: temp-admin
+DEBUG - 2026-09-26 18:45:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:45:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:45:50 --> [BACKUP] Hapus: backup_20260926_184520.sql oleh: temp-admin
+DEBUG - 2026-09-26 18:45:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:45:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:45:54 --> [BACKUP] Hapus: backup_20260926_184506.sql oleh: temp-admin
+DEBUG - 2026-09-26 18:45:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:45:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:45:58 --> [BACKUP] Hapus: backup_20260926_184253.sql oleh: temp-admin
+DEBUG - 2026-09-26 18:45:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:46:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:46:02 --> [BACKUP] Hapus: backup_20260926_184048.sql oleh: temp-admin
+DEBUG - 2026-09-26 18:46:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:46:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:46:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:49:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:49:49 --> [BACKUP] Backup dibuat: backup_20260926_184949.sql oleh: temp-admin
+DEBUG - 2026-09-26 18:49:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:50:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:50:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:50:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:51:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 18:51:08 --> [BACKUP] Safety backup sebelum restore: backup_20260926_185108.sql
+INFO - 2026-09-26 18:51:09 --> [BACKUP] Restore berhasil dari: backup_20260926_184949.sql oleh: temp-admin
+DEBUG - 2026-09-26 18:51:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:51:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:51:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:52:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:52:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:52:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:52:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:52:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:52:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:52:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:52:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:52:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:53:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:59:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:59:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:59:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 18:59:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:00:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-26 19:00:07 --> [RECOVERY] Percobaan gagal dari IP: ::1
+DEBUG - 2026-09-26 19:00:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:00:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:00:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:00:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:00:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:00:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:00:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:00:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 19:00:26 --> [RECOVERY_UI] Key ID 1 dihapus oleh Owner: reihan
+DEBUG - 2026-09-26 19:00:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:00:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 19:00:31 --> [RECOVERY_UI] Key ID 2 dihapus oleh Owner: reihan
+DEBUG - 2026-09-26 19:00:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:00:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 19:00:35 --> [RECOVERY_UI] Key ID 3 dihapus oleh Owner: reihan
+DEBUG - 2026-09-26 19:00:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:00:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 19:00:51 --> [RECOVERY_UI] Key baru di-generate oleh Owner: reihan (Label: Kunci Darurat Owner)
+DEBUG - 2026-09-26 19:01:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:01:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:01:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:01:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:01:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2026-09-26 19:01:12 --> [RECOVERY] Session berhasil dibuat dari IP: ::1
+DEBUG - 2026-09-26 19:01:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:01:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-26 19:01:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
