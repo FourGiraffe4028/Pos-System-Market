@@ -1,6 +1,6 @@
 -- ============================================================
 -- POS System Market — Database Backup
--- Generated  : 2026-09-26 18:49:49
+-- Generated  : 2026-09-27 03:59:01
 -- Database   : posystem_baru
 -- PHP Version: 8.3.33
 -- ============================================================
@@ -232,14 +232,13 @@ CREATE TABLE `recovery_keys` (
   `used_at` timestamp NULL DEFAULT NULL,
   `is_used` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `recovery_keys` (`id`, `key_hash`, `label`, `expires_at`, `used_at`, `is_used`) VALUES
-(1, '$2y$10$j2DPrgRANYCLk.Kvman3euJN/dvS9bitXoGLA0xhrpXPmh5oUPXWi', 'Key-20260926180709', '2026-10-26 18:07:09', NULL, 0),
-(2, '$2y$10$OVgoJPGIb9f5X36sJkbAqOcSGlTnoMUaU/kEUrWccNyw6tiUmSMPe', 'Key-20260926181757', '2026-10-26 18:17:57', NULL, 0),
-(3, '$2y$10$wz.fpAkcW6upggtHVZRnf.P1vim2sWb.bwKvZqP9atXon5R4ZC4Eu', 'Key-20260926182400', '2026-10-26 18:24:00', NULL, 0),
 (4, '$2y$10$tJveXo0B8WhsLPCkmdNwnuS0xpkJLywLLIGnhClqjhWeUdTouwArG', 'Key-20260926182429', '2026-10-26 18:24:29', '2026-09-26 18:30:22', 1),
-(5, '$2y$10$FFkm0PZburEtRcuyCCCIAeM4p7DX5s7Ri0OC.QaEyj.eUGvA/DvHu', 'Key-20260926183643', '2026-10-26 18:36:43', '2026-09-26 18:36:51', 1);
+(5, '$2y$10$FFkm0PZburEtRcuyCCCIAeM4p7DX5s7Ri0OC.QaEyj.eUGvA/DvHu', 'Key-20260926183643', '2026-10-26 18:36:43', '2026-09-26 18:36:51', 1),
+(6, '$2y$10$XIuRJ/fMz1sxNASCLd/hQOzZG0ab2ejwzUQwAvG7EsMa/Gd3ZXU4u', 'Kunci Darurat Owner', '2026-09-27 19:00:51', '2026-09-26 19:01:12', 1),
+(7, '$2y$10$.PO80ogBlMM7JacsdXW6NOjV22E56BDp1IdSadnADKC2IjYbHTrDm', 'Kunci Owner', '2026-09-28 03:55:03', '2026-09-27 03:56:25', 1);
 
 -- --------------------------------------------------------
 -- Table: `retur`
@@ -351,6 +350,7 @@ INSERT INTO `users` (`user_id`, `username`, `nama_user`, `password`, `role`, `id
 ('inv_indomarco', 'gina', 'Gina Inventory', '$2y$10$SvOsFOt4jsIsf/c6QlIn1OSecBZlNE9QmqLP/PkorraLGVXa0wiXm', 'inventory', 'S0001', 1),
 ('kasir01', 'jiddan', 'Jiddan Kasir', '$2y$10$SvOsFOt4jsIsf/c6QlIn1OSecBZlNE9QmqLP/PkorraLGVXa0wiXm', 'kasir', NULL, 1),
 ('owner01', 'reihan', 'Pak Reihan', '$2y$10$SvOsFOt4jsIsf/c6QlIn1OSecBZlNE9QmqLP/PkorraLGVXa0wiXm', 'owner', NULL, 1),
-('spv01', 'rian', 'Rian Supervisor', '$2y$10$SvOsFOt4jsIsf/c6QlIn1OSecBZlNE9QmqLP/PkorraLGVXa0wiXm', 'supervisor', NULL, 1);
+('spv01', 'rian', 'Rian Supervisor', '$2y$10$SvOsFOt4jsIsf/c6QlIn1OSecBZlNE9QmqLP/PkorraLGVXa0wiXm', 'supervisor', NULL, 1),
+('usr01', 'temp-admin', 'Admin Sementara', '$2y$10$g1.S.MqJTPi0yZc/.XdIyuGkzZHNUC2NasniGKGJ6NlmKuGAlGZaW', 'admin', NULL, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
