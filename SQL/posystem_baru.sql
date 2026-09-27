@@ -231,7 +231,8 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
 (1, '2026-09-20-034913', 'App\\Database\\Migrations\\AddStatusAndKasirToReturTable', 'default', 'App', 1789876175, 1),
 (2, '2026-09-20-041059', 'App\\Database\\Migrations\\DropTrgReturMasukTrigger', 'default', 'App', 1789877474, 2),
-(3, '2026-09-20-044414', 'App\\Database\\Migrations\\AddKepuasanToPenjualanTable', 'default', 'App', 1789879476, 3);
+(3, '2026-09-20-044414', 'App\\Database\\Migrations\\AddKepuasanToPenjualanTable', 'default', 'App', 1789879476, 3),
+(4, '2026-09-27-000001', 'App\\Database\\Migrations\\CreateRecoveryKeysTable', 'default', 'App', 1790470000, 4);
 
 -- --------------------------------------------------------
 
@@ -295,6 +296,22 @@ INSERT INTO `penjualan` (`id_penjualan`, `user_id`, `id_customer`, `tanggal_jual
 ('PJ202609200006', 'kasir01', NULL, '2026-09-20 05:20:59', 5000.00, 0.00, 5000.00, 'tunai', 22000.00, 17000.00, 'selesai', NULL),
 ('PJ202609200007', 'kasir01', NULL, '2026-09-20 05:21:48', 5000.00, 0.00, 5000.00, 'tunai', 5000.00, 0.00, 'selesai', NULL),
 ('PJ202609200008', 'kasir01', NULL, '2026-09-20 05:22:55', 34000.00, 0.00, 34000.00, 'tunai', 100000.00, 66000.00, 'selesai', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recovery_keys`
+--
+
+CREATE TABLE `recovery_keys` (
+  `id` int(11) NOT NULL,
+  `key_hash` varchar(255) NOT NULL,
+  `label` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `expires_at` timestamp NOT NULL,
+  `used_at` timestamp NULL DEFAULT NULL,
+  `is_used` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -499,6 +516,12 @@ ALTER TABLE `penjualan`
   ADD KEY `idx_tanggal_jual` (`tanggal_jual`);
 
 --
+-- Indexes for table `recovery_keys`
+--
+ALTER TABLE `recovery_keys`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `retur`
 --
 ALTER TABLE `retur`
@@ -568,7 +591,13 @@ ALTER TABLE `detail_retur_supplier`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `recovery_keys`
+--
+ALTER TABLE `recovery_keys`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
