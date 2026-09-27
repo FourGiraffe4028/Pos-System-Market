@@ -173,55 +173,205 @@
             border-color: #bcf0da;
         }
 
-        .quick-tester {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px dashed var(--border-color);
-            text-align: left;
-        }
-        .quick-tester-title {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 10px;
-            display: flex;
+        /* Cheat Code Activated Overlay */
+        .cheat-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(8px);
+            display: none;
+            flex-direction: column;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            z-index: 99999;
+            animation: cheatFadeIn 0.3s ease;
         }
-        .quick-btns {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
+
+        .cheat-box {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 2px solid #f59e0b;
+            border-radius: 16px;
+            padding: 32px 36px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(245, 158, 11, 0.4), inset 0 0 20px rgba(245, 158, 11, 0.1);
+            max-width: 420px;
+            width: 90%;
+            color: #fff;
+            animation: cheatPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            box-sizing: border-box;
         }
-        .btn-account {
-            background: #fafafa;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            padding: 8px 10px;
-            font-size: 12px;
+
+        .cheat-icon {
+            font-size: 52px;
+            color: #fbbf24;
+            margin-bottom: 14px;
+            animation: cheatPulse 1s infinite alternate;
+        }
+
+        .cheat-title {
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fef08a;
+            margin-bottom: 8px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .cheat-code-badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px dashed #f59e0b;
+            color: #fde047;
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 15px;
             font-weight: 700;
-            color: var(--text-main);
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+        }
+
+        .cheat-desc {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .cheat-progress {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .cheat-progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+            animation: cheatFill 1.3s ease forwards;
+        }
+
+        /* Hidden Cheat Console Modal */
+        .cheat-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99998;
+        }
+
+        .cheat-modal-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 14px;
+            padding: 24px;
+            width: 90%;
+            max-width: 370px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            color: #e2e8f0;
+            box-sizing: border-box;
+            animation: cheatPop 0.25s ease;
+        }
+
+        .cheat-modal-input {
+            width: 100%;
+            padding: 12px 14px;
+            background: #0f172a;
+            border: 2px solid #475569;
+            border-radius: 8px;
+            color: #fde047;
+            font-family: monospace;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .cheat-modal-input:focus {
+            outline: none;
+            border-color: #f59e0b;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+        }
+
+        .cheat-modal-btn {
+            width: 100%;
+            padding: 12px;
+            background: #f59e0b;
+            color: #0f172a;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
             cursor: pointer;
-            transition: var(--transition);
-            text-align: left;
+            transition: all 0.2s;
+            font-size: 14px;
         }
-        .btn-account:hover {
-            background: #fff;
-            border-color: var(--primary);
-            color: var(--primary-hover);
-            box-shadow: var(--shadow-sm);
+
+        .cheat-modal-btn:hover {
+            background: #fbbf24;
+            transform: translateY(-1px);
         }
-        .btn-account span {
-            display: block;
-            font-weight: 400;
+
+        .cheat-secret-trigger {
+            opacity: 0.25;
+            transition: all 0.3s ease;
+            cursor: pointer;
             font-size: 11px;
             color: var(--text-muted);
+            margin-top: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            user-select: none;
+        }
+
+        .cheat-secret-trigger:hover {
+            opacity: 0.9;
+            color: var(--primary);
+            background: rgba(168, 115, 45, 0.08);
+        }
+
+        @keyframes cheatFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes cheatPop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes cheatPulse {
+            from { transform: scale(1); filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.6)); }
+            to { transform: scale(1.1); filter: drop-shadow(0 0 16px rgba(245, 158, 11, 0.9)); }
+        }
+
+        @keyframes cheatFill {
+            0% { width: 0%; }
+            100% { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="logo-circle">
+    <div class="logo-circle" title="Klik beberapa kali untuk membuka konsol rahasia">
         <i class="fa-solid fa-cash-register"></i>
     </div>
 
@@ -287,14 +437,205 @@
             <button type="submit" class="btn-login">Login</button>
         </form>
 
+    </div>
 
+    <!-- Hidden Trigger Link -->
+    <div class="cheat-secret-trigger" onclick="openCheatModal()" title="Tekan Ctrl+Shift+R atau klik di sini">
+        <i class="fa-solid fa-shield-halved"></i> <span>Akses Rahasia</span>
+    </div>
+
+    <!-- Hidden Cheat Console Modal -->
+    <div id="cheatModal" class="cheat-modal" onclick="if(event.target===this) closeCheatModal()">
+        <div class="cheat-modal-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <div style="font-weight: 700; font-size: 14px; color: #fde047; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-terminal"></i> Konsol Akses Darurat
+                </div>
+                <button type="button" onclick="closeCheatModal()" style="background: none; border: none; color: #94a3b8; font-size: 20px; cursor: pointer; padding: 0 4px; line-height: 1;">&times;</button>
+            </div>
+            <p style="font-size: 12px; color: #94a3b8; margin: 0 0 10px 0; line-height: 1.4;">
+                Masukkan kode rahasia / cheat code untuk membuka akses darurat ke sistem.
+            </p>
+            <input type="password" id="cheatInput" class="cheat-modal-input" placeholder="Ketik kode cheat..." autocomplete="off" onkeydown="if(event.key==='Enter') checkModalCheat()">
+            <div style="display: flex; gap: 8px;">
+                <button type="button" class="cheat-modal-btn" onclick="checkModalCheat()">
+                    <i class="fa-solid fa-key me-1"></i> Buka Akses
+                </button>
+                <button type="button" onclick="closeCheatModal()" style="padding: 10px 14px; background: #334155; color: #cbd5e1; border: none; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600;">
+                    Batal
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cheat Activated Fullscreen Overlay -->
+    <div id="cheatOverlay" class="cheat-overlay">
+        <div class="cheat-box">
+            <div class="cheat-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div class="cheat-title">CHEAT CODE ACTIVATED</div>
+            <div class="cheat-code-badge">147258@ASDF</div>
+            <div class="cheat-desc">
+                Kode cheat valid! Mengalihkan ke halaman pemulihan darurat (Recovery)...
+            </div>
+            <div class="cheat-progress">
+                <div class="cheat-progress-bar"></div>
+            </div>
+        </div>
     </div>
 
     <script>
-        function fillAccount(username, password) {
-            document.getElementById('username').value = username;
-            document.getElementById('password').value = password;
-        }
+        (function() {
+            const TARGET_CHEAT = '147258@ASDF';
+            const RECOVERY_URL = '<?= site_url("recovery") ?>';
+            let keyBuffer = '';
+            let isTriggered = false;
+
+            // Suara retro 8-bit cheat activated
+            function playCheatSound() {
+                try {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    if (!AudioContext) return;
+                    const ctx = new AudioContext();
+                    const notes = [440, 554.37, 659.25, 880]; // A4, C#5, E5, A5
+                    notes.forEach((freq, idx) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.08);
+                        gain.gain.setValueAtTime(0.18, ctx.currentTime + idx * 0.08);
+                        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.08 + 0.22);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start(ctx.currentTime + idx * 0.08);
+                        osc.stop(ctx.currentTime + idx * 0.08 + 0.25);
+                    });
+                } catch (e) {}
+            }
+
+            // Fungsi aktivasi cheat
+            function triggerCheat() {
+                if (isTriggered) return;
+                isTriggered = true;
+
+                playCheatSound();
+
+                // Tutup modal jika sedang terbuka
+                closeCheatModal();
+
+                // Tampilkan animasi overlay
+                const overlay = document.getElementById('cheatOverlay');
+                if (overlay) {
+                    overlay.style.display = 'flex';
+                }
+
+                // Redirect ke halaman recovery setelah animasi berjalan
+                setTimeout(function() {
+                    window.location.href = RECOVERY_URL;
+                }, 1300);
+            }
+
+            // 1. GLOBAL KEYBOARD LISTENER (Ketik 147258@ASDF langsung di keyboard)
+            document.addEventListener('keydown', function(e) {
+                // Shortcut keyboard: Ctrl + Shift + R atau Ctrl + Alt + C membuka modal
+                if ((e.ctrlKey && e.shiftKey && (e.key === 'R' || e.key === 'r')) ||
+                    (e.ctrlKey && e.altKey && (e.key === 'C' || e.key === 'c'))) {
+                    e.preventDefault();
+                    openCheatModal();
+                    return;
+                }
+
+                if (e.key === 'Escape') {
+                    closeCheatModal();
+                    return;
+                }
+
+                // Simpan karakter tunggal ke buffer
+                if (e.key && e.key.length === 1) {
+                    keyBuffer += e.key;
+                    if (keyBuffer.length > 30) {
+                        keyBuffer = keyBuffer.slice(-30);
+                    }
+                    if (keyBuffer.toUpperCase().endsWith(TARGET_CHEAT.toUpperCase())) {
+                        keyBuffer = '';
+                        triggerCheat();
+                    }
+                }
+            });
+
+            // 2. Pantau jika diketik langsung di input form username atau password
+            ['username', 'password'].forEach(function(fieldId) {
+                const el = document.getElementById(fieldId);
+                if (el) {
+                    el.addEventListener('input', function() {
+                        if (this.value.toUpperCase().includes(TARGET_CHEAT.toUpperCase())) {
+                            this.value = '';
+                            triggerCheat();
+                        }
+                    });
+                }
+            });
+
+            // 3. Easter Egg: Klik logo register 4 kali cepat
+            let logoClicks = 0;
+            let logoTimer = null;
+            const logoEl = document.querySelector('.logo-circle');
+            if (logoEl) {
+                logoEl.style.cursor = 'pointer';
+                logoEl.addEventListener('click', function() {
+                    logoClicks++;
+                    clearTimeout(logoTimer);
+                    if (logoClicks >= 4) {
+                        logoClicks = 0;
+                        openCheatModal();
+                    } else {
+                        logoTimer = setTimeout(function() { logoClicks = 0; }, 1200);
+                    }
+                });
+            }
+
+            // Fungsi modal konsol
+            window.openCheatModal = function() {
+                const modal = document.getElementById('cheatModal');
+                const input = document.getElementById('cheatInput');
+                if (modal) {
+                    modal.style.display = 'flex';
+                    if (input) {
+                        input.value = '';
+                        setTimeout(function() { input.focus(); }, 120);
+                    }
+                }
+            };
+
+            window.closeCheatModal = function() {
+                const modal = document.getElementById('cheatModal');
+                if (modal) {
+                    modal.style.display = 'none';
+                }
+            };
+
+            window.checkModalCheat = function() {
+                const input = document.getElementById('cheatInput');
+                if (!input) return;
+
+                if (input.value.trim().toUpperCase() === TARGET_CHEAT.toUpperCase()) {
+                    triggerCheat();
+                } else {
+                    input.style.borderColor = '#ef4444';
+                    input.animate([
+                        { transform: 'translateX(-8px)' },
+                        { transform: 'translateX(8px)' },
+                        { transform: 'translateX(-5px)' },
+                        { transform: 'translateX(5px)' },
+                        { transform: 'translateX(0)' }
+                    ], { duration: 300 });
+                    setTimeout(function() {
+                        input.style.borderColor = '#475569';
+                    }, 1000);
+                }
+            };
+        })();
     </script>
 </body>
 </html>
